@@ -25,7 +25,7 @@ const LoginPopup = ({ setShowLogin }) => {
 
     try {
       if (currState === "Sign Up") {
-        const regRes = await axios.post(`http://localhost:4000/api/user/register`, data);
+        const regRes = await axios.post(`${url}/api/user/register`, data);
         console.log(regRes.status)
         if (regRes.status === 201 ) {
           alert("Account created successfully! Now login to continue.");
