@@ -1,0 +1,209 @@
+/* General Popup Styling */
+.login-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Container Styling */
+.login-popup-container {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 30px 25px;
+  position: relative;
+  z-index: 2;
+  animation: slideIn 0.4s ease forwards;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Dark Mode */
+.login-popup.dark-mode .login-popup-container {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.login-popup.dark-mode input,
+.login-popup.dark-mode button {
+  background: #2e2e2e;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+/* Title & Close Button */
+.login-popup-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-popup-title h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.login-popup-title img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.login-popup-title img:hover {
+  transform: rotate(90deg) scale(1.2);
+}
+
+.toggle-mode {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  background: transparent;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Input Fields */
+.login-popup-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.login-popup-inputs input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.login-popup-inputs input:focus {
+  border-color: #007BFF;
+}
+
+/* Submit Button */
+.login-popup-container button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-popup-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.login-popup-container button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Terms & Condition */
+.login-popup-condition {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.login-popup-condition p {
+  font-size: 12px;
+}
+
+/* Switch Mode Links */
+.login-popup-container p span {
+  color: #007BFF;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.login-popup-container p span:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Google Login Styling */
+.google-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Bubbles Background */
+.popup-bg-bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.popup-bg-bubbles span {
+  position: absolute;
+  bottom: -100px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: rise 10s infinite ease-in;
+}
+
+.popup-bg-bubbles span:nth-child(1) {
+  left: 10%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+}
+
+.popup-bg-bubbles span:nth-child(2) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 4s;
+}
+
+.popup-bg-bubbles span:nth-child(3) {
+  left: 80%;
+  width: 10px;
+  height: 10px;
+  animation-delay: 6s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-800px);
+    opacity: 0;
+  }
+}

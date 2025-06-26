@@ -1,0 +1,156 @@
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.contact-left {
+    flex: 1;
+    padding: 40px;
+    background-color: #f8f9fa;
+    min-width: 300px;
+}
+
+.contact-right {
+    flex: 1.2;
+    padding: 40px;
+    min-width: 300px;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-item {
+    display: flex;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: #000000;
+}
+
+.contact-text h3 {
+    font-size: 1.1rem;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.contact-text p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.contact-form-container {
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.contact-form-container h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #0069d9;
+}
+
+.submit-btn.sending {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.success-message {
+    color: #28a745;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .contact-left, 
+    .contact-right {
+        padding: 30px;
+    }
+    
+    .contact-title {
+        font-size: 2rem;
+    }
+}

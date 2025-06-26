@@ -1,0 +1,215 @@
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: #140130;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  position: relative;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+.logo {
+  height: 50px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* Main Menu */
+.navbar-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu a.active,
+.navbar-menu a:hover {
+  color: #1e88e5;
+}
+
+.navbar-menu a::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #dac100;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: width 0.3s ease;
+}
+
+.navbar-menu a:hover::after {
+  width: 100%;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-right: 25px;
+}
+
+/* Search Icon */
+.navbar-right img[src*="search_icon"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  filter: brightness(0.5);
+  transition: filter 0.3s ease;
+}
+.navbar-right img[src*="search_icon"]:hover {
+  filter: brightness(1);
+}
+
+/* Favorites / Cart Icon Wrapper */
+.navbar-search-icon {
+  position: relative;
+  cursor: pointer;
+}
+.navbar-search-icon img {
+  width: 26px;
+  height: 26px;
+  transition: transform 0.3s ease;
+  background-color: #dac100;
+  border-radius: 6px;
+  padding: 3px;
+}
+.navbar-search-icon:hover img {
+  transform: scale(1.2);
+}
+
+/* Notification Dot on Favorites */
+.navbar-search-icon .dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background: #e63946; /* bright red */
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 6px rgba(230, 57, 70, 0.7);
+}
+
+/* Login Button */
+.navbar-right > button {
+  padding: 8px 18px;
+  background: #457b9d;  /* nice blue */
+  color: white;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(69, 123, 157, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.navbar-right > button:hover {
+  background: #1d3557; /* darker blue */
+  transform: scale(1.05);
+}
+
+/* User Profile Dropdown */
+.navbar-profile {
+  position: relative;
+  cursor: pointer;
+}
+.navbar-profile img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease;
+}
+.navbar-profile:hover img {
+  box-shadow: 0 0 10px #457b9d;
+}
+
+/* Profile dropdown menu */
+.nav-profile-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px 0;
+  width: 140px;
+  opacity: 0;
+  pointer-events: auto; /* FIXED: Should be none by default */
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+.navbar-profile:hover .nav-profile-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Dropdown items */
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  gap: 10px;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.nav-profile-dropdown li:hover {
+  background-color: #f0f4f8;
+}
+.nav-profile-dropdown li img {
+  width: 18px;
+  height: 18px;
+  filter: invert(30%);
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .navbar-right {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .navbar-profile {
+    margin-left: auto;
+  }
+
+  .navbar-right > button {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  .navbar-menu a {
+    font-size: 16px;
+  }
+}
