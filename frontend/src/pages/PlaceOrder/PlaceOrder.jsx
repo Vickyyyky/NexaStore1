@@ -161,7 +161,7 @@ const PlaceOrder = () => {
     const result = response.data;
 
     if (response.status === 200) {
-       window.location.href = response.session_url;
+       window.location.href = result.session_url;
       alert('Order placed successfully!');
       
     } else {
