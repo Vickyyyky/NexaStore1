@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
-import { StoreContext } from '../../../../frontend/src/context/StoreContext'; // ✅ FIXED IMPORT
+import { StoreContext } from '../../../context/StoreContext'; // ✅ FIXED: Import only context
 import gsap from 'gsap';
 
 const Navbar = ({ setShowLogin }) => {
@@ -11,14 +11,16 @@ const Navbar = ({ setShowLogin }) => {
   const navbarRef = useRef();
   const navigate = useNavigate();
 
+  // ✅ Access context
   const store = useContext(StoreContext);
 
-  // ✅ Safe fallback in case context isn't available
+  // ✅ Fallback if context is not yet ready
   if (!store) return null;
 
   const { getTotalFavAmount, token, setToken } = store;
 
   useEffect(() => {
+    // GSAP animation on mount
     gsap.from(navbarRef.current, {
       y: -100,
       opacity: 0,
@@ -26,6 +28,7 @@ const Navbar = ({ setShowLogin }) => {
       ease: 'power2.out',
     });
 
+    // Responsive state update
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
