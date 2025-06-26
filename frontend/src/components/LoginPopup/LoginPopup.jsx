@@ -39,7 +39,18 @@ const LoginPopup = ({ setShowLogin }) => {
           localStorage.setItem("token", loginRes.data.token);
           setShowLogin(false);
           alert("Login successful!");
-          navigate("/");
+          
+          // Check if user is admin and redirect accordingly
+          const userRole = loginRes.data.user?.role || loginRes.data.role;
+          const isAdmin = userRole === 'admin' || loginRes.data.user?.isAdmin;
+          
+          if (isAdmin) {
+            // Redirect admin to external URL
+            window.location.href = "https://nexastore1-1.onrender.com";
+          } else {
+            // Navigate regular users to home page
+            navigate("/");
+          }
         } else {
           alert(loginRes.data.message);
         }
@@ -47,6 +58,43 @@ const LoginPopup = ({ setShowLogin }) => {
     } catch (err) {
       console.error("Error:", err);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      setLoading(true);
+      
+      // Send Google credential to your backend for verification
+      const googleRes = await axios.post(`${url}/api/user/google-login`, {
+        credential: credentialResponse.credential
+      });
+      
+      if (googleRes.data.success) {
+        setToken(googleRes.data.token);
+        localStorage.setItem("token", googleRes.data.token);
+        setShowLogin(false);
+        alert("Google login successful!");
+        
+        // Check if user is admin and redirect accordingly
+        const userRole = googleRes.data.user?.role || googleRes.data.role;
+        const isAdmin = userRole === 'admin' || googleRes.data.user?.isAdmin;
+        
+        if (isAdmin) {
+          // Redirect admin to external URL
+          window.location.href = "https://nexastore1-1.onrender.com";
+        } else {
+          // Navigate regular users to home page
+          navigate("/");
+        }
+      } else {
+        alert(googleRes.data.message);
+      }
+    } catch (err) {
+      console.error("Google login error:", err);
+      alert("Google login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -86,8 +134,11 @@ const LoginPopup = ({ setShowLogin }) => {
         )}
 
         <GoogleLogin
-          onSuccess={cred => console.log("Google success", cred)}
-          onError={() => console.log("Google failed")}
+          onSuccess={handleGoogleSuccess}
+          onError={() => {
+            console.log("Google login failed");
+            alert("Google login failed. Please try again.");
+          }}
         />
       </form>
     </div>
