@@ -8,7 +8,7 @@ const StoreContextProvider = ({ children }) => {
   const [item_list, setItemList] = useState([]);
   const [token, setToken] = useState("");
 
-  const url = "https://nexastore1.onrender.com";
+  const url = "http://localhost:4000";
 
   const addToFav = async (itemId) => {
     setFavItems((prev) => ({
