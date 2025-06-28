@@ -25,7 +25,7 @@ const Product = ({ id, name, price, description, image }) => {
         <div className="product-image-container">
           <img 
             className="product-image" 
-            src={url + "/images/" + image} 
+            src={image} 
             alt={name}
             loading="lazy"
           />
