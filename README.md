@@ -1,6 +1,8 @@
 # NexaStore1
 
-NexaStore1 is a full-stack e-commerce application with separate admin, frontend, and backend modules. It is designed for managing products, users, orders, and favorites, with a modern UI and RESTful API.
+NexaStore1 is a full-stack e-commerce platform featuring an admin dashboard, a customer-facing storefront, and a backend API. It enables product management, order processing, user authentication, and favorites, making it suitable for modern online stores.
+
+---
 
 ## Project Structure
 

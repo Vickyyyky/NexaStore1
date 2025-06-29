@@ -8,7 +8,7 @@ const stripe = new Stripe("sk_test_51RRqAWIHhbpFsUgnc2g6kz5z4GjtJsKSaYvLS7fj1U88
 // placing user order for frontend
 const placeOrder = async (req,res)=>{
 
-    const frontend_url = "https://nexastore1-1-frontend.onrender.com/";
+    const frontend_url = "https://nexastore121.netlify.app/";
 
     try {
         const newOrder = orderModel({
