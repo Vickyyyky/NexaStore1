@@ -24,17 +24,36 @@ const LoginPopup = ({ setShowLogin }) => {
     setLoading(true);
 
     try {
+      // ===== Validation before sending request =====
+      if (!data.email || !data.password) {
+        alert("Email and password are required.");
+        setLoading(false);
+        return;
+      }
+      if (currState === "Sign Up" && !data.name) {
+        alert("Name is required for Sign Up.");
+        setLoading(false);
+        return;
+      }
+
       if (currState === "Sign Up") {
-        const regRes = await axios.post(`${url}/api/user/register`, data);
-        console.log(regRes.status)
-        if (regRes.status === 201 ) {
+        // ===== Registration API =====
+        const regRes = await axios.post(`${url}/api/user/register`, data, {
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (regRes.status === 201 || regRes.data.success) {
           alert("Account created successfully! Now login to continue.");
-          setCurrState("Login"); // switch to login form
+          setCurrState("Login");
         } else {
-          alert(regRes.data.message || "Something went wrong.");
+          alert(regRes.data.message || "Something went wrong during signup.");
         }
       } else {
-        const loginRes = await axios.post(`${url}/api/user/login`, data);
+        // ===== Login API =====
+        const loginRes = await axios.post(`${url}/api/user/login`, data, {
+          headers: { "Content-Type": "application/json" },
+        });
+
         if (loginRes.data.success) {
           setToken(loginRes.data.token);
           localStorage.setItem("token", loginRes.data.token);
@@ -42,12 +61,12 @@ const LoginPopup = ({ setShowLogin }) => {
           alert("Login successful!");
           navigate("/");
         } else {
-          alert(loginRes.data.message);
+          alert(loginRes.data.message || "Invalid credentials.");
         }
       }
     } catch (err) {
-      console.error("Error:", err);
-      alert("Something went wrong. Please try again.");
+      console.error("Error:", err.response?.data || err.message);
+      alert(err.response?.data?.message || "Something went wrong, please try again.");
     } finally {
       setLoading(false);
     }
@@ -126,9 +145,14 @@ const LoginPopup = ({ setShowLogin }) => {
           </p>
         )}
 
+        {/* ===== Google Login Button ===== */}
         <GoogleLogin
-          onSuccess={(cred) => console.log("Google success", cred)}
-          onError={() => console.log("Google failed")}
+          onSuccess={(cred) => {
+            console.log("Google login success:", cred);
+            // In production, send token to backend:
+            // axios.post(`${url}/api/user/google-login`, { token: cred.credential })
+          }}
+          onError={() => console.log("Google login failed")}
         />
       </form>
     </div>

@@ -1,49 +1,54 @@
-import React, { useState, useEffect } from 'react'
-import './Header.css'
+// Header.jsx
+import React, { useState, useEffect } from 'react';
+import './Header.css';
 
 const Header = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   const slides = [
     {
       title: "Nexa Store :- Discover Premium",
-      highlight: "Shopping Experience",
-      subtitle: "Explore our extensive selection of premium products curated to elevate your shopping experience and satisfy your every need with quality and convenience.",
+      highlight: "",
+      subtitle:
+        "Explore our extensive selection of premium products curated to elevate your shopping experience and satisfy your every need with quality and convenience.",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      icon: "🛍️"
+      icon: "🛍️",
     },
     {
-      title: "Quality Products",
-      highlight: "Exceptional Service",
-      subtitle: "From trendy fashion to cutting-edge electronics, we bring you the finest collection with unmatched quality and customer satisfaction guarantee.",
-      gradient: "linear-gradient(135deg, #f093fb 0%,rgb(69, 0, 9) 100%)",
-      icon: "⭐"
+      title: "Quality Products :- Exceptional Service",
+      highlight: "",
+      subtitle:
+        "From trendy fashion to cutting-edge electronics, we bring you the finest collection with unmatched quality and customer satisfaction guarantee.",
+      gradient: "linear-gradient(135deg, #f093fb 0%, rgb(69, 0, 9) 100%)",
+      icon: "⭐",
     },
     {
-      title: "Worldwide Shoping",
-      highlight: "Worldwide Shipping",
-      subtitle: "Experience lightning-ery to your doorstep with our advanced logistics network spanning across the globe for your convenience.",
-      gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-      icon: "🚀"
-    }
-  ]
+      title: "Worldwide Shopping:- Worldwide Shipping", // ✅ FIXED TYPO HERE
+      highlight: "",
+      subtitle:
+        "Experience lightning-ery to your doorstep with our advanced logistics network spanning across the globe for your convenience.",
+      gradient: "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)",
+
+      icon: "🚀",
+    },
+  ];
 
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 5000)
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [slides.length])
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   const goToSlide = (index) => {
-    setCurrentSlide(index)
-  }
+    setCurrentSlide(index);
+  };
 
   return (
-    <div className='header'>
+    <div className="header">
       <div className="header-background">
         <div className="animated-bg"></div>
         <div className="floating-elements">
@@ -54,18 +59,12 @@ const Header = () => {
           <div className="float-element element-5">🎈</div>
           <div className="float-element element-6">🎊</div>
         </div>
-        <div className="geometric-shapes">
-          <div className="shape triangle"></div>
-          <div className="shape circle"></div>
-          <div className="shape square"></div>
-          <div className="shape hexagon"></div>
-        </div>
       </div>
 
       <div className="header-content">
         <div className={`slide-container ${isVisible ? 'visible' : ''}`}>
           {slides.map((slide, index) => (
-            <div 
+            <div
               key={index}
               className={`slide ${index === currentSlide ? 'active' : ''}`}
               style={{ '--slide-gradient': slide.gradient }}
@@ -76,15 +75,13 @@ const Header = () => {
                 <span className="highlight-text"> {slide.highlight}</span>
               </h1>
               <p className="header-subtitle">{slide.subtitle}</p>
-              
+
               <div className="cta-section">
                 <button className="cta-primary">
-                  Start Shopping
-                  <span className="btn-icon">🛒</span>
+                  Start Shopping <span className="btn-icon">🛒</span>
                 </button>
                 <button className="cta-secondary">
-                  Explore Categories
-                  <span className="btn-icon">📱</span>
+                  Explore Categories <span className="btn-icon">📱</span>
                 </button>
               </div>
 
@@ -147,7 +144,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

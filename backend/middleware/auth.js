@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
   if (!token) return res.json({ success: false, message: "Not Authorized" });
 
   try {
-    const decoded = jwt.verify(token, "SHURULOVESALWAYS");
+   const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.body.userId = decoded.id;
     req.body.role = decoded.role;
     next();

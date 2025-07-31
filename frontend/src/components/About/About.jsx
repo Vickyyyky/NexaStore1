@@ -142,19 +142,19 @@ const About = () => {
               {
                 name: "Vicky Kumar",
                 role: "Founder & CEO",
-                image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+                image: "https://media.licdn.com/dms/image/v2/D5603AQH2PMWxMRdHpA/profile-displayphoto-shrink_800_800/B56ZbWEf14GgAc-/0/1747348226325?e=1756944000&v=beta&t=HmUDqOmg6DNcjB1oDQGjghW6HdYQLlrJolOvKAEydmI",
                 description: "Visionary leader with 10+ years in e-commerce"
               },
               {
                 name: "Vishal Kumar Yadav",
                 role: "Head of Product",
-                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+                image: "https://media.licdn.com/dms/image/v2/D5635AQG100o-fy8Zng/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1727246469297?e=1751810400&v=beta&t=b3MSGccy_8KpSGiRXQ2ev3A0PbZt8w-wuryqlSKM8zo",
                 description: "Product innovator focused on user experience"
               },
               {
                 name: "Manikant Tiwari",
-                role: "Customer Success",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+                role: "Mern Stack Developer",
+                image: "https://media.licdn.com/dms/image/v2/D4D35AQHGxXYACYvkuQ/profile-framedphoto-shrink_800_800/profile-framedphoto-shrink_800_800/0/1733226454585?e=1751806800&v=beta&t=MgssqYtG0SrMhG5VoFcwvUdYM7WxxPQsFp-zVW8lfbU",
                 description: "Dedicated to ensuring customer happiness"
               }
             ].map((member, index) => (

@@ -11,8 +11,8 @@ import ItemDisplay from "./components/ItemDisplay/ItemDisplay";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import ContactPage from "./components/ContactPage/ContactPage";
 import About from "./components/About/About";
-import Success from "./pages/Success/Success";
-import Cancel from "./pages/Cancel/Cancel";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
 import Verify from "./pages/Verify";
 // import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 

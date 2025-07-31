@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import 'dotenv/config';
+import "dotenv/config";
 import { connectDB } from "./config/db.js";
 import itemRouter from "./routes/itemRoute.js";
 import userRouter from "./routes/userRoute.js";
@@ -17,7 +17,7 @@ app.use("/api/item", itemRouter);
 app.use("/api/user", userRouter);
 app.use("/api/fav", favRouter);
 app.use("/api/order", orderRouter);
-app.use("/images", express.static('uploads'));
+app.use("/images", express.static("uploads"));
 
 app.get("/", (req, res) => res.send("API Working"));
 

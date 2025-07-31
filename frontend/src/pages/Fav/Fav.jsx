@@ -57,7 +57,7 @@ const Fav = () => {
               <div key={item._id} className="fav-items-row">
                 <div className="fav-items-item">
                   <img
-                    src={`${url}/images/${item.image}`}
+                    src={item.image}
                     alt={item.name}
                     className="fav-img"
                   />
