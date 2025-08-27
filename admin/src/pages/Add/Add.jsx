@@ -38,10 +38,10 @@ const Add = ({ url }) => {
     formData.append("image", image);
 
     try {
-      const response = await fetch(`${url}/api/item/add`, {
-        method: "POST",
-        body: formData,
-      });
+     const response = await fetch(`${url}/api/item/add`, {
+  method: "POST",
+  body: formData,
+});
 
       if (!response.ok) {
         throw new Error('Failed to add product');

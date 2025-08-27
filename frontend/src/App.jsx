@@ -14,6 +14,7 @@ import About from "./components/About/About";
 import Success from "./pages/Success";
 import Cancel from "./pages/Cancel";
 import Verify from "./pages/Verify";
+import ScrollToTop from "./components/ScrollToTop"; // 👈 import here
 // import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 
 const AdminRoute = ({ children }) => {
@@ -34,6 +35,10 @@ const App = () => {
     <>
       {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <Navbar setShowLogin={setShowLogin} />
+
+      {/* 👇 Add this so every route resets scroll */}
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ItemDisplay category={category} />} />
@@ -59,10 +64,10 @@ const App = () => {
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/verify" element={<Verify />} />
-
         {/* <Route path="/add" element={<AdminRoute><AdminDashboard /></AdminRoute>} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
       <Footer />
     </>
   );

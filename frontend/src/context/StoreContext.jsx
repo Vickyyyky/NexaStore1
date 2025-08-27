@@ -8,22 +8,29 @@ const StoreContextProvider = ({ children }) => {
   const [item_list, setItemList] = useState([]);
   const [token, setToken] = useState("");
 
-  const url = "https://nexastore1.onrender.com";
+  const url = "http://localhost:4000"; // API base URL
 
+  // Add item to favorites
   const addToFav = async (itemId) => {
     setFavItems((prev) => ({
       ...prev,
       [itemId]: prev[itemId] ? prev[itemId] + 1 : 1,
     }));
+
     if (token) {
       try {
-        await axios.post(`${url}/api/fav/add`, { itemId }, { headers: { token } });
+        await axios.post(
+          `${url}/api/fav/add`,
+          { itemId },
+          { headers: { token } }
+        );
       } catch (err) {
         console.error("Add to fav failed:", err);
       }
     }
   };
 
+  // Remove item from favorites
   const removeFromFav = async (itemId) => {
     setFavItems((prev) => {
       const updated = { ...prev };
@@ -31,9 +38,14 @@ const StoreContextProvider = ({ children }) => {
       else delete updated[itemId];
       return updated;
     });
+
     if (token) {
       try {
-        await axios.post(`${url}/api/fav/remove`, { itemId }, { headers: { token } });
+        await axios.post(
+          `${url}/api/fav/remove`,
+          { itemId },
+          { headers: { token } }
+        );
       } catch (err) {
         console.error("Remove from fav failed:", err);
       }
@@ -48,33 +60,39 @@ const StoreContextProvider = ({ children }) => {
     await removeFromFav(itemId);
   };
 
+  // Get total price of all fav items
   const getTotalFavAmount = () => {
-    let total = 0;
-    for (const itemId in favItems) {
+    return Object.entries(favItems).reduce((total, [itemId, qty]) => {
       const item = item_list.find((p) => p._id === itemId);
-      if (item) total += item.price * favItems[itemId];
-    }
-    return total;
+      return item ? total + item.price * qty : total;
+    }, 0);
   };
 
+  // Fetch all items from backend
   const fetchItemList = async () => {
     try {
       const res = await axios.get(`${url}/api/item/list`);
-      setItemList(res.data.data || []);
+      setItemList(res.data?.data || res.data || []);
     } catch (err) {
       console.error("Fetch item list failed:", err);
     }
   };
 
-  const loadFavData = async (token) => {
+  // Load favorites from backend
+  const loadFavData = async (savedToken) => {
     try {
-      const res = await axios.post(`${url}/api/fav/get`, {}, { headers: { token } });
-      setFavItems(res.data.favData || {});
+      const res = await axios.post(
+        `${url}/api/fav/get`,
+        {},
+        { headers: { token: savedToken } }
+      );
+      setFavItems(res.data?.favData || {});
     } catch (err) {
       console.error("Load fav data failed:", err);
     }
   };
 
+  // Initial load
   useEffect(() => {
     const load = async () => {
       await fetchItemList();
@@ -95,8 +113,8 @@ const StoreContextProvider = ({ children }) => {
         setFavItems,
         addToFav,
         removeFromFav,
-        increaseFavQty,  // ✅ exposed
-        decreaseFavQty,  // ✅ exposed
+        increaseFavQty,
+        decreaseFavQty,
         getTotalFavAmount,
         url,
         token,

@@ -1,5 +1,4 @@
 // context/StoreContext.jsx
-
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,8 +11,11 @@ export const StoreContextProvider = ({ children }) => {
   const [item_list, setItemList] = useState([]);
   const [token, setToken] = useState("");
 
-  // ✅ Backend API base URL (Render URL)
-  const url = "https://nexastore1-1.onrender.com";
+  // ✅ API base URL (switch between local + production)
+  const url =
+    import.meta.env.MODE === "development"
+      ? "http://localhost:4000"
+      : "https://nexastore1-1.onrender.com";
 
   // ✅ Add item to favorites
   const addToFav = async (itemId) => {

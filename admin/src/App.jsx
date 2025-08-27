@@ -1,39 +1,49 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Add from './pages/Add/Add';
 import List from './pages/List/List';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const url = "https://nexastore1.onrender.com";
+  const url = "http://localhost:4000"; // API base URL
 
   return (
     <div>
-      {/* ToastContainer renders the toast notifications on the page */}
+      {/* Toast notifications */}
       <ToastContainer 
         position="top-right"
-        autoClose={3000} 
-        hideProgressBar={false} 
-        newestOnTop={false} 
-        closeOnClick 
-        rtl={false} 
-        pauseOnFocusLoss 
-        draggable 
-        pauseOnHover 
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
         theme="colored"
       />
-      
+
+      {/* Navbar */}
       <Navbar />
       <hr />
-      <div className="app-content" style={{ display: 'flex' }}>
+
+      {/* Sidebar + Main Content */}
+      <div className="app-content" style={{ display: 'flex', minHeight: 'calc(100vh - 70px)' }}>
         <Sidebar />
-        <Routes>
-          <Route path="/add" element={<Add url={url} />} />
-          <Route path="/list" element={<List url={url} />} />
-        </Routes>
+        
+        {/* Main content area */}
+        <div style={{ flex: 1, padding: '20px', backgroundColor: '#f5f5f5' }}>
+          <Routes>
+            {/* Default route */}
+            <Route path="/" element={<Navigate to="/list" />} />
+            
+            <Route path="/add" element={<Add url={url} />} />
+            <Route path="/list" element={<List url={url} />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );
